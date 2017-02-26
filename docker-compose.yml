@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    restart: always
+    env_file: .env
+    links:
+      - postgres
+      - redis
+    ports:
+      - $PORT:$PORT
+      - '127.0.0.1:9229:9229' # V8 inspector
+    volumes:
+      - yarn:/root/.cache/yarn
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    command: node scripts/run.js
+
+  postgres:
+    image: postgres:9.6.1-alpine
+    restart: always
+    ports:
+      - 32776:5432
+    tmpfs:
+      - /run/postgresql
+      - /tmp
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./scripts/postgres-init.sh:/docker-entrypoint-initdb.d/init.sh
+    environment:
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=vanidb
+      - PGDATA=/var/lib/postgresql/data
+
+  redis:
+    image: redis:3.2.6-alpine
+    restart: always
+    read_only: true
+    volumes:
+      - redis:/data
+
+volumes:
+  yarn:
+  postgres:
+  redis:
