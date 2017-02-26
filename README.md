@@ -40,7 +40,7 @@
 ## Iniciando aplicação
 Tenha instalado:
 - [Docker](https://www.docker.com/) v1.12.5 ou superior
-- [Docker-Compose](https://docs.docker.com/compose/install/) v1.12 ou superior
+- [Docker-Compose](https://docs.docker.com/compose/install/)
 
 ```bash
 $ docker-compose up               # Inicia os containers Docker com aplicação rodando 
