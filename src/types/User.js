@@ -18,6 +18,10 @@ export default new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLID),
     },
 
+    name: {
+      type: GraphQLString,
+    },
+
     email: {
       type: GraphQLString,
     },

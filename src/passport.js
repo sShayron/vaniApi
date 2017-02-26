@@ -32,7 +32,9 @@ const strategies = [
       profileFields: ['name', 'email', 'link', 'locale', 'timezone'],
     },
     readProfile(profile) {
+      console.log(profile);
       return {
+        username: `${profile._json.first_name} ${profile._json.last_name}`,
         email: profile._json.email,
       };
     },
@@ -75,6 +77,7 @@ strategies.forEach(({ name, provider, Strategy, options, readProfile }) => {
   }, async (req, accessToken, refreshToken, profile, done) => {
     try {
       const { email } = readProfile(profile);
+      const { username } = readProfile(profile);
       const accessTokenClaim = `urn:${provider}:access_token`;
       const refreshTokenClaim = `urn:${provider}:refresh_token`;
       let user = await db.users.findByLogin(provider, profile.id);
@@ -98,7 +101,7 @@ strategies.forEach(({ name, provider, Strategy, options, readProfile }) => {
         req.app.locals.error = `There is already an account using this email address. Sign in to that account and link it with ${name} manually from Account Settings.`;
         done();
       } else {
-        user = await db.users.create(email);
+        user = await db.users.create(username, email);
         await db.userLogins.create(user.id, provider, profile.id);
         await db.userClaims.createOrUpdate(user.id, accessTokenClaim, accessToken);
         await db.userClaims.createOrUpdate(user.id, refreshTokenClaim, refreshToken);

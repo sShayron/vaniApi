@@ -65,9 +65,11 @@ app.use('/graphql', expressGraphQL(req => ({
 
 app.get('/', (req, res) => {
   if (req.user) {
-    res.send(`<p>Welcome, ${req.user.email}! (<a href="/logout">logout</a>)</p>`);
+    res.send(`<p>Bem vindo, ${req.user.name}! (<a href="/logout">logout</a>)</p>`);
+    console.log(req.user);
   } else {
-    res.json({"project": "VaniAPI"});
+    res.send('<p>Seja bem-vindo! (<a href="/login/facebook" style="color: blue;">Login com FACEBOOK</a>)</p>');
+    // res.json({"project": "VaniAPI"});
   }
 });
 

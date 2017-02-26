@@ -13,7 +13,7 @@ import db from './pool';
 
 export function findById(id: number) {
   return db
-    .query('SELECT id, email FROM users WHERE id = $1', [id])
+    .query('SELECT id, name, email FROM users WHERE id = $1', [id])
     .then(({ rows }) => rows.length ? rows[0] : null);
 }
 
@@ -31,7 +31,7 @@ export function any(email: string) {
     .then(x => x.rows[0].exists);
 }
 
-export function create(email: string) {
-  return db.query('INSERT INTO users (email) VALUES ($1) RETURNING id', [email])
+export function create(name :string, email: string) {
+  return db.query('INSERT INTO users (name, email) VALUES ($1,$2) RETURNING id', [name, email])
     .then(({ rows }) => findById(rows[0].id));
 }
