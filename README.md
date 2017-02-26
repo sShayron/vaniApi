@@ -3,12 +3,12 @@
 
 ## Recursos
 
-✓ Multi-plataforma, desenvolva no macOS, Windows ou Linux  usando container[Docker](https://www.docker.com/)<br>
+✓ Multi-plataforma, desenvolva no macOS, Windows ou Linux  usando [Docker](https://www.docker.com/)<br>
 ✓ Única dependência do projeto [Docker](https://www.docker.com/) v1.12.5 ou posterior<br>
 ✓ Autenticação e autorização via [Passport.js]([`src/passport`](./src/passport))<br>
-✓ Gerênciamento em cache da sessão com[Redis] (https://redis.io/)<br>
+✓ Gerênciamento em cache da sessão com [Redis] (https://redis.io/)<br>
 ✓ Banco de dados utilizado [PostgreSQL](https://www.postgresql.org/): Migrations ([`migrations`](./migrations))<br>
-✓ [GraphQL](http://graphql.org/)Faz a função da ORM, sendo uma linguagem de query baseada em promise<br>
+✓ [GraphQL](http://graphql.org/) Faz a função da ORM, sendo uma linguagem de query baseada em promise<br>
 ✓ O mesmo processo utilizado pra fazer o build pra local é o usado pra fazer build em produção<br>
 
 ## Estrutura de Pastas
@@ -39,7 +39,7 @@
 
 ## Iniciando aplicação
 Tenha instalado:
-- [Docker]https://www.postgresql.org/ v1.12.5 ou superior
+- [Docker](https://www.docker.com/) v1.12.5 ou superior
 - [Docker-Compose](https://docs.docker.com/compose/install/) v1.12 ou superior
 
 ```bash
