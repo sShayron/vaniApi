@@ -11,15 +11,15 @@
 /* eslint-disable no-param-reassign */
 
 import { Router } from 'express';
-import { findAll } from '../db/members';
+import db from '../db';
 
 const router = new Router();
 
 router.get('/', (req, res) => {
-  findAll().then( ( member ) => {
-    res.status(200).json( member );
+  db.members.findAll().then(member => {
+    res.status(200).json(member);
   });
-
 });
 
 export default router;
+

@@ -21,6 +21,9 @@ const config = {
   migrations: {
     tableName: 'migrations',
   },
+  seeders: {
+    tableName: 'seeders',
+  }
 };
 
 // The template for database migration files (see templates/*.js)
@@ -50,11 +53,13 @@ module.exports = task('db', async () => {
         await db.migrate.rollback(config);
         break;
       case 'seed':
-        console.error('Not yet implemented.');
+        db = knex(config);
+        await db.seed.make('seed', config);
         break;
       default:
         db = knex(config);
         await db.migrate.latest(config);
+        await db.seed.run(config);
     }
   } finally {
     if (db) {
