@@ -52,7 +52,7 @@ module.exports.up = async (db) => {
   await db.schema.createTable('members', (table) => {
     table.uuid('id').notNullable().defaultTo(db.raw('uuid_generate_v1mc()')).primary();
     table.string('name', 100).notNullable;
-    table.string('email', 100).unique();
+    table.string('email', 100);
   });
   
 };
