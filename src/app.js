@@ -18,6 +18,8 @@ import expressGraphQL from 'express-graphql';
 import PrettyError from 'pretty-error';
 import passport from './passport';
 import schema from './schema';
+import middlewares from './middlewares';
+
 //routes
 import accountRoutes from './routes/account';
 import membersRoutes from './routes/members';
@@ -52,7 +54,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(accountRoutes);
-app.use('/members', membersRoutes);
+app.use('/members', middlewares.authenticate.isAuthenticated, membersRoutes);
 
 app.use('/graphql', expressGraphQL(req => ({
   schema,

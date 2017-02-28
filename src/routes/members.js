@@ -15,10 +15,13 @@ import db from '../db';
 
 const router = new Router();
 
-router.get('/', (req, res) => {
-  db.members.findAll().then(member => {
-    res.status(200).json(member);
-  });
+router.get('/', async(req, res, done) => {
+  try {
+    let response = await db.members.findAll();  
+    done(null, res.status(200).json(response));
+  } catch (err) {
+    done(null, res.status(500).send(err));
+  }
 });
 
 export default router;
