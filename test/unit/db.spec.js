@@ -24,4 +24,10 @@ describe('db', () => {
       expect(existsFalse).to.be.false;
     });
   });
+
+  describe('db.pessoa', () => {
+    it('NOT IMPLEMENTED', async () => {
+
+    });
+  });
 });
