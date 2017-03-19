@@ -15,12 +15,11 @@ import db from '../db';
 
 const router = new Router();
 
-router.get('/', async(req, res, done) => {
+router.get('/', async (req, res, done) => {
   try {
-    let response = await db.members.findAll();  
-    done(null, res.status(200).json(response));
+    done(null, res.status(200).json(await db.members.findAll()));
   } catch (err) {
-    done(null, res.status(500).send(err));
+    done(null, res.status(500));
   }
 });
 

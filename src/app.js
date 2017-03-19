@@ -18,9 +18,9 @@ import expressGraphQL from 'express-graphql';
 import PrettyError from 'pretty-error';
 import passport from './passport';
 import schema from './schema';
-import middlewares from './middlewares';
+import { isAuthenticated } from './middlewares';
 
-//routes
+//  routes
 import accountRoutes from './routes/account';
 import membersRoutes from './routes/members';
 
@@ -41,12 +41,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Accept');
 
-  if ('OPTIONS' == req.method) {
+  if ('OPTIONS' === req.method) {
     res.sendStatus(200);
   } else {
     next();
@@ -54,7 +54,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(accountRoutes);
-app.use('/members', middlewares.authenticate.isAuthenticated, membersRoutes);
+app.use('/members', isAuthenticated, membersRoutes);
 
 app.use('/graphql', expressGraphQL(req => ({
   schema,

@@ -3,5 +3,8 @@
   "extends": "airbnb-base",
   "plugins": [
     "flowtype"
-  ]
+  ],
+  "rules": {
+    "yoda": "off"
+  }
 }

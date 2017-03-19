@@ -1,5 +1,2 @@
-import * as authenticate from './authenticate';
-
-export default {
-  authenticate,
-};
+/* eslint-disable import/prefer-default-export*/
+export { default as isAuthenticated } from './isAuthenticate';
