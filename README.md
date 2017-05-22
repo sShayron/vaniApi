@@ -45,9 +45,9 @@ Tenha instalado:
 ```bash
 $ docker-compose up               # Inicia os containers Docker com aplicação rodando 
 ```
-E pronto, servidor da API está disponível em [http://localhost:5000/](http://localhost:5000/)
+Sua API estará disponível em [http://localhost:5000/](http://localhost:5000/)
 
-- Uma vez que o container do docker chamado `api` for iniciado, a Docker engine executará: `node scripts/run.js`  comando que instalarão as depêndencias do projeto, os migrates dos esquemas do banco de dados para ultima versão, compilar os arquivos do código fonte([`src`](./src)).
+- Uma vez que o container do docker chamado `api` for iniciado, a Docker engine executará: `node scripts/run.js`  comando que instalará as depêndencias do projeto, os migrates dos esquemas do banco de dados para ultima versão, compilar os arquivos do código fonte([`src`](./src)).
 - Para abrir uma sessão por terminal dentro do container `api` execute:
 ```bash
 $ docker-compose exec api /bin/sh
